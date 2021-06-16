@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  // Vartibles
+  // Variables
   // items = ['Huesos', 'Musculos', 'S.N.P', 'S.N.C'];
 
   // icon = []
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
     icono: string;
     url?: string;
   }[] = [];
-
+  showHelpCard = true
   // Metodos
   constructor() { }
 
@@ -67,6 +67,12 @@ export class HomePage implements OnInit {
         return item.tema.toLowerCase().indexOf(textoIngresado.toLowerCase()) > -1;
       });
     }
+  }
+
+  onCloseHelpCardClick() {
+
+    this.showHelpCard = false
+
   }
 
 
