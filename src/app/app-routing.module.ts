@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'huesos',
     loadChildren: () => import('./huesos/huesos.module').then(m => m.HuesosPageModule)
+  },
+  {
+    path: 'musculos',
+    loadChildren: () => import('./musculos/musculos.module').then( m => m.MusculosPageModule)
   }
 
 ];
