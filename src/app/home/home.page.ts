@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faHeadSideVirus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomePage implements OnInit {
   // numero = 2;
   // unbooleano = false;
   // un arreglo de objetos 
+  // faHeadSideVirus = faHeadSideVirus;
   items: {
     tema: string;
     icono: string;
@@ -51,6 +53,7 @@ export class HomePage implements OnInit {
       }
     ];
     this.copiaItems = this.items;
+
   }
 
   inicilizarItems() {
