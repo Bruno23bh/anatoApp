@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Huesos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar placeholder="Buscador de Temas" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+  <ion-item button *ngFor="let item of items" [routerLink]="[item.url]">
+    <ion-icon slot="start" [name]="item.icono"></ion-icon>
+    <ion-label>{{item.tema}}</ion-label>
+  </ion-item>
+</ion-content>
