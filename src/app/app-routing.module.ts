@@ -18,8 +18,13 @@ const routes: Routes = [
   },
   {
     path: 'musculos',
-    loadChildren: () => import('./musculos/musculos.module').then( m => m.MusculosPageModule)
+    loadChildren: () => import('./musculos/musculos.module').then(m => m.MusculosPageModule)
+  },
+  {
+    path: 'quiz/:id',
+    loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizPageModule)
   }
+
 
 ];
 

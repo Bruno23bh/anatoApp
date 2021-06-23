@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonItemSliding } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-huesos',
   templateUrl: './huesos.page.html',
@@ -27,24 +28,28 @@ export class HuesosPage implements OnInit {
       {
         tema: 'Craneo',
         icono: 'skull-outline',
-
+        url: '../quiz/1',
       },
       {
         tema: 'Miembros Superiores',
-        icono: "hand-right-outline"
+        icono: "hand-right-outline",
+        url: '../quiz/2',
       },
 
       {
         tema: 'Torax',
-        icono: "shirt-outline"
+        icono: "shirt-outline",
+        url: '../quiz/3',
       },
       {
         tema: 'Pelvis',
-        icono: "warning-outline"
+        icono: "warning-outline",
+        url: '../quiz/4',
       },
       {
         tema: 'Miembros Inferiores',
-        icono: "pin-outline"
+        icono: "pin-outline",
+        url: '../quiz/5',
       },
 
     ];
