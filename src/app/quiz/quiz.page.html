@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>quiz</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div *ngFor="let quiz of quizs">
+    <ion-text color="primary" class="ion-text-center">
+      <h1>{{quiz.question}}</h1>
+    </ion-text>
+    <ion-img [src]="quiz.imgUrl"></ion-img>
+    <ion-list>
+      <ion-radio-group name="question" value="">
+        <ion-list-header>
+          <ion-label>Preguntas.</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let option of quiz.options">
+          <ion-label>{{option}}</ion-label>
+          <ion-radio [value]="option"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+  <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+    Siguiente
+  </ion-button>
 </ion-content>

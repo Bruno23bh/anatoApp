@@ -27,6 +27,7 @@ export class HomePage implements OnInit {
     icono: string;
     url?: string;
   }[] = [];
+
   showHelpCard = true
   // Metodos
   constructor() { }
