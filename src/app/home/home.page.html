@@ -28,13 +28,13 @@
 
     </ion-card-header>
     <ion-card-content>
-      Awesome content
+      Hola, somos.....nuestro objetivo es...
     </ion-card-content>
   </ion-card>
   <ion-searchbar placeholder="Buscador de Temas" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
   <ion-item button *ngFor="let item of items" [routerLink]="[item.url]">
-    <ion-icon slot="start" [name]="item.icono"></ion-icon>
+    <ion-icon slot="start" [name]="item.icon"></ion-icon>
     <!-- <fa-icon [icon]="faHeadSideVirus"></fa-icon> -->
-    <ion-label>{{item.tema}}</ion-label>
+    <ion-label>{{item.theme}}</ion-label>
   </ion-item>
 </ion-content>

@@ -17,14 +17,14 @@ export class HomePage implements OnInit {
   // un arreglo de objetos 
   // faHeadSideVirus = faHeadSideVirus;
   items: {
-    tema: string;
-    icono: string;
+    theme: string;
+    icon: string;
     url?: string;
   }[] = [];
 
-  copiaItems: {
-    tema: string;
-    icono: string;
+  copyItems: {
+    theme: string;
+    icon: string;
     url?: string;
   }[] = [];
 
@@ -35,30 +35,30 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        tema: 'Huesos', // huesos
-        icono: 'skull-outline',
+        theme: 'Huesos', // huesos
+        icon: 'skull-outline',
         url: '/huesos'
       },
       {
-        tema: 'Musculos',
-        icono: 'accessibility-outline',
+        theme: 'Musculos',
+        icon: 'accessibility-outline',
         url: '/musculos'
       },
       {
-        tema: 'S.N.P',
-        icono: 'body-outline'
+        theme: 'S.N.P',
+        icon: 'body-outline'
       },
       {
-        tema: 'S.N.C',
-        icono: 'git-merge-outline'
+        theme: 'S.N.C',
+        icon: 'git-merge-outline'
       }
     ];
-    this.copiaItems = this.items;
+    this.copyItems = this.items;
 
   }
 
   inicilizarItems() {
-    this.items = this.copiaItems;
+    this.items = this.copyItems;
   }
 
   onSearchChange(event) {
@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
       console.log(textoIngresado);
       console.log(this.items.length);
       this.items = this.items.filter(item => {
-        return item.tema.toLowerCase().indexOf(textoIngresado.toLowerCase()) > -1;
+        return item.theme.toLowerCase().indexOf(textoIngresado.toLowerCase()) > -1;
       });
     }
   }

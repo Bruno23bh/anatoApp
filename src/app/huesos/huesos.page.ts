@@ -9,14 +9,14 @@ import { IonItemSliding } from '@ionic/angular';
 })
 export class HuesosPage implements OnInit {
   items: {
-    tema: string;
-    icono: string;
+    theme: string;
+    icon: string;
     url?: string;
   }[] = [];
 
-  copiaItems: {
-    tema: string;
-    icono: string;
+  copyItems: {
+    theme: string;
+    icon: string;
     url?: string;
   }[] = [];
 
@@ -26,48 +26,48 @@ export class HuesosPage implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        tema: 'Craneo',
-        icono: 'skull-outline',
+        theme: 'Craneo',
+        icon: 'skull-outline',
         url: '../quiz/1',
       },
       {
-        tema: 'Miembros Superiores',
-        icono: "hand-right-outline",
+        theme: 'Miembros Superiores',
+        icon: "hand-right-outline",
         url: '../quiz/2',
       },
 
       {
-        tema: 'Torax',
-        icono: "shirt-outline",
+        theme: 'Torax',
+        icon: "shirt-outline",
         url: '../quiz/3',
       },
       {
-        tema: 'Pelvis',
-        icono: "warning-outline",
+        theme: 'Pelvis',
+        icon: "warning-outline",
         url: '../quiz/4',
       },
       {
-        tema: 'Miembros Inferiores',
-        icono: "pin-outline",
+        theme: 'Miembros Inferiores',
+        icon: "pin-outline",
         url: '../quiz/5',
       },
 
     ];
-    this.copiaItems = this.items;
+    this.copyItems = this.items;
   }
 
   inicilizarItems() {
-    this.items = this.copiaItems;
+    this.items = this.copyItems;
   }
 
   onSearchChange(event) {
-    let textoIngresado: string = event.detail.value;
+    let textEntered: string = event.detail.value;
     this.inicilizarItems();
-    if (textoIngresado.length >= 3) {
-      console.log(textoIngresado);
+    if (textEntered.length >= 3) {
+      console.log(textEntered);
       console.log(this.items.length);
       this.items = this.items.filter(item => {
-        return item.tema.toLowerCase().indexOf(textoIngresado.toLowerCase()) > -1;
+        return item.theme.toLowerCase().indexOf(textEntered.toLowerCase()) > -1;
       });
     }
   }
