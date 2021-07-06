@@ -45,12 +45,14 @@ export class HomePage implements OnInit {
         url: '/musculos'
       },
       {
-        theme: 'S.N.P',
-        icon: 'body-outline'
+        theme: 'Sistema Nervioso Periférico',
+        icon: 'body-outline',
+        url: '/periferico'
       },
       {
-        theme: 'S.N.C',
-        icon: 'git-merge-outline'
+        theme: 'Sistema Nervioso Central',
+        icon: 'git-merge-outline',
+        url: '/central'
       }
     ];
     this.copyItems = this.items;

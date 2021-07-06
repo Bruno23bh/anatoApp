@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>musculos</ion-title>
+    <ion-title> Sistema Nervioso Periférico</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,14 +8,12 @@
 </ion-header>
 
 <ion-content>
-
   <ion-searchbar placeholder="Buscador de Temas" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
   <ion-item button *ngFor="let item of items" [routerLink]="[item.url]">
-    <ion-icon slot="start" [name]='item.icon'></ion-icon>
 
+    <ion-icon slot="start" [name]="item.icon"></ion-icon>
     <ion-label>{{item.theme}}</ion-label>
+
   </ion-item>
-
-
 
 </ion-content>

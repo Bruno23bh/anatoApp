@@ -23,7 +23,24 @@ const routes: Routes = [
   {
     path: 'quiz/:id',
     loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizPageModule)
-  }
+  },
+  {
+    path: 'periferico',
+    loadChildren: () => import('./periferico/periferico.module').then(m => m.PerifericoPageModule)
+  },  {
+    path: 'central',
+    loadChildren: () => import('./central/central.module').then( m => m.CentralPageModule)
+  },
+
+
+
+
+
+
+
+
+
+
 
 
 ];
