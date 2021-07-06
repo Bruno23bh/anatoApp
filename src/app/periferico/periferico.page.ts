@@ -22,9 +22,54 @@ export class PerifericoPage implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        theme: '',
+        theme: 'Nervios Craneales',
         icon: '',
-        url: '',
+        //url: '',
+      },
+      {
+        theme: 'Nervios Cervicales',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Nervios Dorsales',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Nervios Lumbares',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Nervios Sacros',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Nervios Coccígeos',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Plexo Cervical',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Plexo Braquial',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Plexo Lumbar',
+        icon: '',
+        //url: '',
+      },
+      {
+        theme: 'Plexo Sacro',
+        icon: '',
+        //url: '',
       },
     ];
     this.copyItems = this.items;
