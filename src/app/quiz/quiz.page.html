@@ -8,24 +8,35 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let quiz of quizs">
-    <ion-text color="primary" class="ion-text-center">
-      <h1>{{quiz.question}}</h1>
-    </ion-text>
-    <ion-img [src]="quiz.imgUrl"></ion-img>
-    <ion-list>
-      <ion-radio-group name="question" value="">
-        <ion-list-header>
-          <ion-label>Preguntas.</ion-label>
-        </ion-list-header>
-        <ion-item *ngFor="let option of quiz.options">
-          <ion-label>{{option}}</ion-label>
-          <ion-radio [value]="option"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
+  <div *ngFor="let quiz of quizs; let quizIndex = index">
+    <div *ngIf="quizIndex === activeIndex">
+      <ion-text color="primary" class="ion-text-center">
+        <h1>{{quiz.question}}</h1>
+      </ion-text>
+      <ion-img [src]="quiz.imgUrl"></ion-img>
+      <ion-list>
+        <ion-radio-group name="question" value="">
+          <ion-list-header>
+            <ion-label>Preguntas.</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let option of quiz.options">
+            <ion-label>{{option}}</ion-label>
+            <ion-radio [value]="option" (click)="onSelectedQuizOption(quiz, option)"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-button (click)="onPreviousQuiz()" fill="clear" shape="round" [disabled]="activeIndex === 0">
+        Anterior
+      </ion-button>
+      <ion-button (click)="onNextQuiz()" fill="clear" shape="round"
+        [disabled]="activeIndex === quizs.length - 1 || !quiz.selectedOption">
+        Siguiente
+      </ion-button>
+      <ion-button (click)="onFinishQuiz()" fill="clear" shape="round" *ngIf="activeIndex === quizs.length - 1"
+        [disabled]="!quiz.selectedOption">
+        Finalizar
+      </ion-button>
+    </div>
   </div>
-  <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
-    Siguiente
-  </ion-button>
+
 </ion-content>
