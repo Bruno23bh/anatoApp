@@ -32,7 +32,7 @@
     </ion-card-content>
   </ion-card>
   <ion-searchbar placeholder="Buscador de Temas" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
-  <ion-item button *ngFor="let item of items" [routerLink]="[item.url]">
+  <ion-item button *ngFor="let item of items" [routerLink]="[item.url]" [queryParams]="{quiz: item.theme}">
     <ion-icon slot="start" [name]="item.icon"></ion-icon>
     <!-- <fa-icon [icon]="faHeadSideVirus"></fa-icon> -->
     <ion-label>{{item.theme}}</ion-label>

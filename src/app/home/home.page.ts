@@ -37,22 +37,22 @@ export class HomePage implements OnInit {
       {
         theme: 'Huesos', // huesos
         icon: 'skull-outline',
-        url: '/huesos'
+        url: '/quizs'
       },
       {
         theme: 'Musculos',
         icon: 'accessibility-outline',
-        url: '/musculos'
+        url: '/quizs'
       },
       {
         theme: 'Sistema Nervioso Periférico',
         icon: 'body-outline',
-        url: '/periferico'
+        url: '/quizs'
       },
       {
         theme: 'Sistema Nervioso Central',
         icon: 'git-merge-outline',
-        url: '/central'
+        url: '/quizs'
       }
     ];
     this.copyItems = this.items;

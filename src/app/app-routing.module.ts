@@ -11,26 +11,15 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
-
-  {
-    path: 'huesos',
-    loadChildren: () => import('./huesos/huesos.module').then(m => m.HuesosPageModule)
-  },
-  {
-    path: 'musculos',
-    loadChildren: () => import('./musculos/musculos.module').then(m => m.MusculosPageModule)
-  },
   {
     path: 'quiz/:id',
     loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizPageModule)
   },
   {
-    path: 'periferico',
-    loadChildren: () => import('./periferico/periferico.module').then(m => m.PerifericoPageModule)
-  },  {
-    path: 'central',
-    loadChildren: () => import('./central/central.module').then( m => m.CentralPageModule)
+    path: 'quizs',
+    loadChildren: () => import('./quizs/quizs.module').then(m => m.QuizsPageModule)
   },
+
 
 
 
