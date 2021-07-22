@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let quiz of quizs; let quizIndex = index">
+  <div *ngFor="let quiz of questions; let quizIndex = index">
     <div *ngIf="quizIndex === activeIndex">
       <ion-text color="primary" class="ion-text-center">
         <h1>{{quiz.question}}</h1>
@@ -29,10 +29,10 @@
         Anterior
       </ion-button>
       <ion-button (click)="onNextQuiz()" fill="clear" shape="round"
-        [disabled]="activeIndex === quizs.length - 1 || !quiz.selectedOption">
+        [disabled]="activeIndex === questions.length - 1 || !quiz.selectedOption">
         Siguiente
       </ion-button>
-      <ion-button (click)="onFinishQuiz()" fill="clear" shape="round" *ngIf="activeIndex === quizs.length - 1"
+      <ion-button (click)="onFinishQuiz()" fill="clear" shape="round" *ngIf="activeIndex === questions.length - 1"
         [disabled]="!quiz.selectedOption">
         Finalizar
       </ion-button>

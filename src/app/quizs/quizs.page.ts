@@ -38,7 +38,6 @@ export class QuizsPage implements OnInit {
             icon: "hand-right-outline",
             url: '../quiz/2',
           },
-
           {
             theme: 'Torax',
             icon: "shirt-outline",
@@ -62,7 +61,7 @@ export class QuizsPage implements OnInit {
           {
             theme: 'Faciales',
             icon: 'happy-outline',
-
+            url: '../quiz/6',
           },
           {
             theme: 'Torax',
@@ -169,8 +168,6 @@ export class QuizsPage implements OnInit {
     let textEntered: string = event.detail.value;
     this.inicilizarItems();
     if (textEntered.length >= 3) {
-      console.log(textEntered);
-      console.log(this.items.length);
       this.items = this.items.filter(item => {
         return item.theme.toLowerCase().indexOf(textEntered.toLowerCase()) > -1;
       });

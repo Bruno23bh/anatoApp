@@ -1,4 +1,4 @@
-export interface Quiz {
+export interface Question {
     question: string;
     imgUrl: string;
     options: string[];

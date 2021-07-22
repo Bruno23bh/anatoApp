@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>En hora buena!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Completaste el quiz!</ion-card-subtitle>
+      <ion-card-title>Felicitaciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Tu resultado fue de {{score}} / {{total}}
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" fill="clear" shape="round" [routerLink]="['/home']">
+    Ir a home
+  </ion-button>
+</ion-content>
