@@ -26,125 +26,120 @@ export class QuizsPage implements OnInit {
   ngOnInit() {
     this.quiz = this.activatedRoute.snapshot.queryParams.quiz;
     switch (this.quiz) {
-      case 'Huesos':
+      case 'Tronco':
         this.items = [
           {
-            theme: 'Craneo',
-            icon: 'skull-outline',
+            theme: 'Columna vertebral',
+            icon: "file-tray-stacked-outline",
             url: '../quiz/1',
           },
           {
-            theme: 'Miembros Superiores',
-            icon: "hand-right-outline",
+            theme: 'Músculos de Tronco',
+            icon: "shirt-outline",
             url: '../quiz/2',
           },
           {
-            theme: 'Torax',
-            icon: "shirt-outline",
+            theme: 'Tórax',
+            icon: 'skull-outline',
             url: '../quiz/3',
           },
           {
-            theme: 'Pelvis',
-            icon: "warning-outline",
+            theme: 'Abdomen',
+            icon: "hand-right-outline",
             url: '../quiz/4',
           },
-          {
-            theme: 'Miembros Inferiores',
-            icon: "pin-outline",
-            url: '../quiz/5',
-          },
-
         ];
         break;
-      case 'Musculos':
+      case 'Miembro superior':
         this.items = [
           {
-            theme: 'Faciales',
+            theme: 'Complejo articular del hombro',
             icon: 'happy-outline',
+            url: '../quiz/5',
+          },
+          {
+            theme: 'Codo',
+            icon: 'shirt-outline',
             url: '../quiz/6',
           },
           {
-            theme: 'Torax',
-            icon: 'shirt-outline',
-
-          },
-          {
-            theme: 'Miembros Superiores',
+            theme: 'Mano',
             icon: 'hand-right-outline',
-
+            url: '../quiz/7',
           },
           {
-            theme: 'Pelvís',
+            theme: 'Vasos',
             icon: 'triangle-outline',
-
+            url: '../quiz/8',
           },
           {
-            theme: 'Miembros Inferiores',
+            theme: 'Nervios',
             icon: 'pin-outline',
-
+            url: '../quiz/9',
           },
-
         ];
         break;
-      case 'Sistema Nervioso Periférico':
+      case 'Esplacnología':
         this.items = [
           {
-            theme: 'Nervios Craneales',
+            theme: '',
+            icon: '',
+            //url: '',
+          },
+        ];
+        break;
+      case 'Miembro Inferior':
+        this.items = [
+          {
+            theme: 'Pelvis y cadera',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Nervios Cervicales',
+            theme: 'Rodilla y Pierna',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Nervios Dorsales',
+            theme: 'Tobillo y Pie',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Nervios Lumbares',
+            theme: 'Vasos',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Nervios Sacros',
+            theme: 'Nervios',
+            icon: '',
+            //url: '',
+          },
+        ];
+        break;
+      case 'Cabeza y Pares Craneales':
+        this.items = [
+          {
+            theme: 'Cráneo',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Nervios Coccígeos',
+            theme: 'Cabeza',
             icon: '',
             //url: '',
           },
           {
-            theme: 'Plexo Cervical',
+            theme: 'Pares Craneanos',
             icon: '',
             //url: '',
           },
-          {
-            theme: 'Plexo Braquial',
-            icon: '',
-            //url: '',
-          },
-          {
-            theme: 'Plexo Lumbar',
-            icon: '',
-            //url: '',
-          },
-          {
-            theme: 'Plexo Sacro',
-            icon: '',
-            //url: '',
-          },
-
         ];
         break;
       case 'Sistema Nervioso Central':
         this.items = [
           {
-            theme: 'Encéfalo',
+            theme: 'Generalidades',
             icon: '',
             //url: '',
           },
@@ -153,8 +148,54 @@ export class QuizsPage implements OnInit {
             icon: '',
             //url: '',
           },
+          {
+            theme: 'Nervio raquídeo',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Tronco encefálico',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Cerebelo',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Cerebro',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Vías de conducción del impulso nervioso',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Vascularización del SNC',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Sistema ventricular',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Meninges',
+            icon: '',
+            //url: '',
+          },
+          {
+            theme: 'Sistema nervioso autónomo',
+            icon: '',
+            //url: '',
+          },
         ];
         break;
+
     }
 
     this.copyItems = this.items;

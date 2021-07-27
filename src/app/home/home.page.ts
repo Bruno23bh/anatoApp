@@ -35,25 +35,31 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        theme: 'Huesos', // huesos
-        icon: 'skull-outline',
+        theme: 'Tronco',
+        icon: 'albums-outline',
         url: '/quizs'
       },
       {
-        theme: 'Musculos',
-        icon: 'accessibility-outline',
+        theme: 'Miembro superior',
+        icon: 'ellipsis-vertical-outline',
         url: '/quizs'
       },
       {
-        theme: 'Sistema Nervioso Periférico',
-        icon: 'body-outline',
+        theme: 'Esplacnología',
+        icon: 'heart-outline',
+        url: '/quizs'
+      },
+      {
+        theme: 'Miembro Inferior',
+        icon: 'footsteps-outline',
         url: '/quizs'
       },
       {
         theme: 'Sistema Nervioso Central',
-        icon: 'git-merge-outline',
+        icon: 'git-pull-request-outline',
         url: '/quizs'
-      }
+      },
+
     ];
     this.copyItems = this.items;
 
