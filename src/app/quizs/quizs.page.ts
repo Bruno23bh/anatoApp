@@ -84,7 +84,7 @@ export class QuizsPage implements OnInit {
           {
             theme: '',
             icon: '',
-            //url: '',
+            url: '../quiz/10',
           },
         ];
         break;
@@ -93,27 +93,27 @@ export class QuizsPage implements OnInit {
           {
             theme: 'Pelvis y cadera',
             icon: '',
-            //url: '',
+            url: '../quiz/11',
           },
           {
             theme: 'Rodilla y Pierna',
             icon: '',
-            //url: '',
+            url: '../quiz/12',
           },
           {
             theme: 'Tobillo y Pie',
             icon: '',
-            //url: '',
+            url: '../quiz/12',
           },
           {
             theme: 'Vasos',
             icon: '',
-            //url: '',
+            url: '../quiz/13',
           },
           {
             theme: 'Nervios',
             icon: '',
-            //url: '',
+            url: '../quiz/14',
           },
         ];
         break;
@@ -122,17 +122,17 @@ export class QuizsPage implements OnInit {
           {
             theme: 'Cráneo',
             icon: '',
-            //url: '',
+            url: '../quiz/15',
           },
           {
             theme: 'Cabeza',
             icon: '',
-            //url: '',
+            url: '../quiz/16'
           },
           {
             theme: 'Pares Craneanos',
             icon: '',
-            //url: '',
+            url: '../quiz/17'
           },
         ];
         break;
@@ -141,57 +141,57 @@ export class QuizsPage implements OnInit {
           {
             theme: 'Generalidades',
             icon: '',
-            //url: '',
+            url: '../quiz/18'
           },
           {
             theme: 'Médula',
             icon: '',
-            //url: '',
+            url: '../quiz/19'
           },
           {
             theme: 'Nervio raquídeo',
             icon: '',
-            //url: '',
+            url: '../quiz/20'
           },
           {
             theme: 'Tronco encefálico',
             icon: '',
-            //url: '',
+            url: '../quiz/21'
           },
           {
             theme: 'Cerebelo',
             icon: '',
-            //url: '',
+            url: '../quiz/22'
           },
           {
             theme: 'Cerebro',
             icon: '',
-            //url: '',
+            url: '../quiz/23'
           },
           {
             theme: 'Vías de conducción del impulso nervioso',
             icon: '',
-            //url: '',
+            url: '../quiz/24'
           },
           {
             theme: 'Vascularización del SNC',
             icon: '',
-            //url: '',
+            url: '../quiz/25'
           },
           {
             theme: 'Sistema ventricular',
             icon: '',
-            //url: '',
+            url: '../quiz/26'
           },
           {
             theme: 'Meninges',
             icon: '',
-            //url: '',
+            url: '../quiz/27'
           },
           {
             theme: 'Sistema nervioso autónomo',
             icon: '',
-            //url: '',
+            url: '../quiz/28'
           },
         ];
         break;

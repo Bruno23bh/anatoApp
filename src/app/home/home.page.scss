@@ -1,3 +1,4 @@
+
 #container {
   text-align: center;
 
@@ -25,13 +26,15 @@
 #container a {
   text-decoration: none;
 }
-#horizontal-cards {
-  #ion-card {
-    display:inline-block;
-    width:256px;
+
+.card-info{
+  ion-card{
+    display: inline-block;
+    position: relative;
+    
   }
 }
+
 ion-img{
   height: 250px;
-  
-}
+}  
