@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button id="back-button"
+                  (click)="onBack()">
+        <ion-icon slot="icon-only"
+                  name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{userContent?.title}}</ion-title>
+    <ion-buttons collapse="true"
+                 slot="end">
+      <ion-button (click)="onSubmit()"
+                  debounceTime="700"
+                  id="save-user-button"
+                  [attr.disabled]="!userForm?.valid">
+        <ion-icon name="save-outline"></ion-icon>
+        <ion-text>
+          &nbsp;{{userContent?.buttonGuardar}}
+        </ion-text>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="usuario; else loading"
+             [ngSwitch]="activeSegment"
+             fullscreen="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-segment (ionChange)="changeSegment($event)"
+                     value="{{activeSegment}}">
+          <ion-segment-button layout="icon-start"
+                              value="{{tab.name}}"
+                              *ngFor="let tab of userContent?.tabs">
+            <ion-icon name="{{tab.icon}}"></ion-icon>
+            &nbsp;{{tab.name}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <div *ngSwitchCase="'Datos'">
+      <app-user-form [userForm]="userForm"
+                     [content]="userContent.form"></app-user-form>
+    </div>
+
+    <!-- FIXME: Add this to the RC  -->
+    <div *ngSwitchCase="'Personalización'">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-list-header>
+                <ion-label><strong>Tema</strong></ion-label>
+              </ion-list-header>
+              <ion-item>
+                <ion-icon slot="start"
+                          [name]="darkcolorThemeState ? 'moon-outline' : 'sunny-outline'"></ion-icon>
+                <ion-label *ngIf="darkcolorThemeState">
+                  Modo oscuro
+                </ion-label>
+                <ion-label *ngIf="!darkcolorThemeState">
+                  Modo claro
+                </ion-label>
+                <ion-toggle id="themeToggle"
+                            slot="end"
+                            [(ngModel)]="darkcolorThemeState"
+                            (ionChange)="changeTheme($event)"></ion-toggle>
+              </ion-item>
+              <ion-list-header>
+                <ion-label><strong>Notificaciones</strong></ion-label>
+              </ion-list-header>
+              <ion-item>
+                <ion-icon slot="start"
+                          [name]="allowNotificationsState ? 'notifications-outline' : 'notifications-off-outline'">
+                </ion-icon>
+                <ion-label>
+                  <h2> <span *ngIf="!allowNotificationsState">No</span> Recibir notificaciones</h2>
+                  <small>Las notificaciones llegaran cuando se asignen tareas/turnos o se actualicen los casos </small>
+                </ion-label>
+                <ion-toggle id="notificationsToggle"
+                            slot="end"
+                            [(ngModel)]="allowNotificationsState"></ion-toggle>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ion-grid>
+</ion-content>
+
+<ng-template #loading>
+  <ion-grid>
+    <ion-row style="height: 100%;"
+             class="ion-justify-content-center ion-align-items-center">
+      <ion-col>
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

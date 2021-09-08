@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">{{notAllowContent?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="'/core/home'">
+        <ion-icon slot="start"
+                  name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="ion-padding"
+           alt="Pagina no encontrada"
+           src="./assets/images/access-deniend.svg"></ion-img>
+</ion-content>

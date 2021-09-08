@@ -1,0 +1,76 @@
+<!-- FIXME: Add this to the remote config Help Info -->
+<ion-grid fixed>
+    <ion-row>
+        <!-- 'PAGO' - 'DATOS' DEL PAGO -->
+        <ion-col *ngIf="page === 'pago' && card === 'datos'" size="12">
+            <ion-text color="primary" class="ion-text-center ion-margin-bottom">
+                <p class="ion-no-margin">Datos del pago</p>
+            </ion-text>
+            <ion-text color="medium" class="ion-text-left">
+                <p class="ion-no-margin">
+                    <small>
+                      <strong>
+                        Estado del pago:
+                      </strong>
+                      El pago cambiará de estado automaticamente a: 
+                      <br>
+                      <strong>IMPAGO</strong> cuando alguna cuota se encuentre impaga. 
+                      <br>
+                      <strong>PAGO</strong> cuando todas las cuotas estén pagas.
+                      <br>  
+                    <strong>
+                      Honorario acordado:
+                    </strong> Usalo para recordar qué se le va a cobrar al cliente. Ejemplos: 
+                    <br>- El 20 %.
+                    <br>- 2 haberes.
+                    <br>
+                    <strong>
+                      Fecha de comunicación:
+                    </strong>
+                    Es la fecha en que se le informó al cliente sobre los honorarios.
+                  </small>
+                </p>
+            </ion-text>
+        </ion-col>
+
+        <!-- 'CASO' - 'DATOS' DEL CASO -->
+        <ion-col *ngIf="page === 'caso' && card === 'tareas'" size="12">
+            <ion-text color="primary" class="ion-text-center ion-margin-bottom">
+                <p class="ion-no-margin">Tareas</p>
+            </ion-text>
+            <ion-text color="medium" class="ion-text-left">
+                <p class="ion-no-margin">
+                    <small>  
+                    <strong>
+                      Fecha de referencia:
+                    </strong>
+                    Podes usarla como fecha de vencimiento.
+                  <br>
+                    <strong>
+                      Reordenar tareas:
+                    </strong>
+                    Podes ordenar las tareas una encima de otra usando el botón
+                    <strong><ion-icon slot="start" name="swap-vertical-outline"></ion-icon></strong>
+                    <br>
+                  </small>
+                </p>
+            </ion-text>
+        </ion-col>
+
+        <!-- 'ORGANIZACION' - 'DEPENDENCIAS' -->
+        <ion-col *ngIf="page === 'organizacion' && card === 'dependencias'" size="12">
+            <ion-text color="primary" class="ion-text-center ion-margin-bottom">
+                <p class="ion-no-margin">Dependencias</p>
+            </ion-text>
+            <ion-text color="medium" class="ion-text-left">
+                <p class="ion-no-margin">
+                    <small>
+                      <strong>Iuris</strong> ofrece un listado de <strong>dependencias</strong> que se utilizan con los <strong>turnos y expedientes</strong>.
+                      Si necesitas una dependencia adicional, podés agregarla desde acá. Estas dependencias son visibles para todos los usuarios de tu organización.
+                    </small>
+                </p>
+            </ion-text>
+        </ion-col>
+
+    </ion-row>
+</ion-grid>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      {{goodbyeContent?.toolbarTitle}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <ion-img src="assets/images/goodbye-sad-to-see-you-go.svg"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="12"
+               size-md="4"
+               size-lg="4">
+        <ion-text color="primary"
+                  class="mensaje">
+          {{goodbyeContent.primaryMessage}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-margin-top ion-text-center">
+      <ion-col size="12"
+               size-md="4"
+               size-lg="4">
+        <ion-text color="medium">
+          {{goodbyeContent.secondaryMessage}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-margin-top ion-text-center">
+      <ion-col size="12"
+               size-md="4"
+               size-lg="4">
+        <ion-button [routerLink]="'/core/login'">{{goodbyeContent.btnIniciarSesion}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

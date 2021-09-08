@@ -1,0 +1,335 @@
+<form [formGroup]="userForm">
+
+  <!-- DATOS PERSONALES -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{content?.cardDatosPersonalesTitle}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.nombre.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="nombre"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.nombre.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('nombre').hasError(validation.type) && (userForm.get('nombre').dirty || userForm.get('nombre').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.apellido.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="apellido"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.apellido.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('apellido').hasError(validation.type) && (userForm.get('apellido').dirty || userForm.get('apellido').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.documentoNro.input}}</ion-label>
+                <ion-input type="number"
+                           formControlName="documentoNro"></ion-input>
+                <ion-button slot="end"
+                            fill="clear"
+                            size="small"
+                            tabindex="-1"
+                            (click)="copyToClipboard(userForm.get('documentoNro').value)">
+                  <ion-icon slot="icon-only"
+                            name="copy-outline"></ion-icon>
+                </ion-button>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.documentoNro.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('documentoNro').hasError(validation.type) && (userForm.get('documentoNro').dirty || userForm.get('documentoNro').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+              <!-- FIXME: Add validation for the existing DNI  -->
+              <!-- <ion-text *ngIf="userForm.get('documentoNro').invalid && userForm.get('documentoNro').dirty"
+                        color="danger">
+                Ya existe un cliente con el número de documento ingresado.
+              </ion-text>
+              <ion-text *ngIf="userForm.get('documentoNro').pending">
+                <ion-icon name="hourglass-outline"></ion-icon> Verificando clientes existentes...
+              </ion-text> -->
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating"
+                           color="primary">{{content?.documentoTipo.input}}</ion-label>
+                <ion-select formControlName="documentoTipo"
+                            cancelText="Cancelar"
+                            okText="OK">
+                  <ion-select-option *ngFor="let documentoTipo of content?.documentoTipo.values"
+                                     [value]="documentoTipo">{{documentoTipo}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.cuil.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="cuil"></ion-input>
+                <ion-button slot="end"
+                            fill="clear"
+                            tabindex="-1"
+                            size="small"
+                            (click)="copyToClipboard(userForm.get('cuil').value)">
+                  <ion-icon slot="icon-only"
+                            name="copy-outline"></ion-icon>
+                </ion-button>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.cuil.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('cuil').hasError(validation.type) && (userForm.get('cuil').dirty || userForm.get('cuil').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="3">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.fechaNacimiento.input}} </ion-label>
+                <ion-input type="text"
+                           formControlName="fechaNacimiento"
+                           simpleMask="99/99/9999"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.fechaNacimiento.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('fechaNacimiento').hasError(validation.type) && (userForm.get('fechaNacimiento').dirty || userForm.get('fechaNacimiento').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+              <ion-note color="primary"
+                        *ngIf="userForm?.get('fechaNacimiento').valid && (userForm.get('fechaNacimiento').dirty || userForm.get('fechaNacimiento').touched)">
+                <small> {{content?.cardDatosPersonalesLabelEdad}}
+                  {{userForm.get('fechaNacimiento').value | age }} </small>
+              </ion-note>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.nacionalidad.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="nacionalidad"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.nacionalidad.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('nacionalidad').hasError(validation.type) && (userForm.get('nacionalidad').dirty || userForm.get('nacionalidad').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating"
+                           color="primary">{{content?.estadoCivil.input}}</ion-label>
+                <ion-select formControlName="estadoCivil"
+                            cancelText="Cancelar"
+                            okText="OK">
+                  <ion-select-option *ngFor="let estadoCivil of content?.estadoCivil.values"
+                                     [value]="estadoCivil">{{estadoCivil}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating"
+                           color="primary">{{content?.sexo.input}}</ion-label>
+                <ion-select formControlName="sexo"
+                            cancelText="Cancelar"
+                            okText="OK">
+                  <ion-select-option *ngFor="let sexo of content?.sexo.values"
+                                     [value]="sexo">{{sexo}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!--  DATOS DE CONTACTO -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{content?.cardDatosDeContactoTitle}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="12"
+                     size-md="6"
+                     size-lg="8">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.direccion.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="direccion"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.direccion.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('direccion').hasError(validation.type) && (userForm.get('direccion').dirty || userForm.get('direccion').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="3"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.piso.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="piso"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.piso.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('piso').hasError(validation.type) && (userForm.get('piso').dirty || userForm.get('piso').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="3"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.departamento.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="departamento"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.departamento.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('departamento').hasError(validation.type) && (userForm.get('departamento').dirty || userForm.get('departamento').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="5">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.provincia.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="provincia"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.provincia.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('provincia').hasError(validation.type) && (userForm.get('provincia').dirty || userForm.get('provincia').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="5">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.localidad.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="localidad"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.localidad.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('localidad').hasError(validation.type) && (userForm.get('localidad').dirty || userForm.get('localidad').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="2">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.codigoPostal.input}}</ion-label>
+                <ion-input type="text"
+                           formControlName="codigoPostal"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.codigoPostal.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('codigoPostal').hasError(validation.type) && (userForm.get('codigoPostal').dirty || userForm.get('codigoPostal').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="6"
+                     size-lg="6">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.email.input}}</ion-label>
+                <ion-input type="text"
+                           id="user-email-input"
+                           formControlName="email"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.email.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('email').hasError(validation.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="6"
+                     size-lg="6">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.telefono.input}} </ion-label>
+                <ion-input type="text"
+                           formControlName="telefono"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of content?.telefono.validations">
+                <ion-text color="danger"
+                          *ngIf="userForm.get('telefono').hasError(validation.type) && (userForm.get('telefono').dirty || userForm.get('telefono').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</form>

@@ -1,0 +1,124 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">{{selectEntitiesModalContent?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title size="small"
+               class="ion-no-padding">
+      <ion-searchbar class="ion-text-start"
+                     [placeholder]="selectEntitiesModalContent?.inputSearchBarPlaceholder"
+                     debounce="700"
+                     [(ngModel)]="searchValue"
+                     (ionChange)="filterEntities($event)"></ion-searchbar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngSwitch]="activeSegment">
+
+  <ion-grid fixed>
+    <ion-row *ngIf="allowCustom">
+      <ion-col size="12">
+        <ion-segment (ionChange)="changeSegment($event)"
+                     id="entities-segments"
+                     value="{{activeSegment}}">
+          <ion-segment-button layout="icon-start"
+                              value="Precargadas">
+            <ion-icon name="cloud-outline"></ion-icon>
+            &nbsp;Precargadas
+          </ion-segment-button>
+          <ion-segment-button layout="icon-start"
+                              value="Personalizadas">
+            <ion-icon name="create-outline"></ion-icon>
+            &nbsp;Personalizadas
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <div *ngSwitchCase="'Precargadas'">
+      <ion-row *ngIf="entities?.length > 0; else loading">
+        <ion-col size="12">
+          <ion-list>
+            <ion-item detail
+                      tappable
+                      id="entity-item"
+                      *ngFor="let entity of entities"
+                      (click)="dismiss(entity)">
+
+              <!-- <ion-badge color="primary"
+                         slot="start"
+                         *ngIf="entity.auto">Auto</ion-badge> -->
+
+              <ion-label *ngIf="searchFirstParameter || searchSecondParameter">
+                <h2>{{entity[searchFirstParameter]}} {{entity[searchSecondParameter]}}</h2>
+              </ion-label>
+
+              <ion-label *ngIf="!searchFirstParameter || !searchSecondParameter">
+                <h2>{{entity}}</h2>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngSwitchCase="'Personalizadas'">
+      <ion-row *ngIf="allowCustom && customEntities?.length > 0; else loading">
+        <ion-col size="12">
+          <ion-list>
+            <ion-item detail
+                      tappable
+                      id="entity-item"
+                      *ngFor="let entity of customEntities"
+                      (click)="dismiss(entity)">
+              <ion-label *ngIf="searchFirstParameter || searchSecondParameter">
+                <h2>{{entity[searchFirstParameter]}} {{entity[searchSecondParameter]}}</h2>
+              </ion-label>
+
+              <ion-label *ngIf="!searchFirstParameter || !searchSecondParameter">
+                <h2>{{entity}}</h2>
+              </ion-label>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ng-template #loading>
+  <ion-grid fixed>
+    <ion-row style="height: 100%;"
+             class="ion-justify-content-center ion-align-items-center">
+      <ion-col *ngIf="!showNoEntitiesMessage && !allowCustom">
+        <app-skeleton></app-skeleton>
+      </ion-col>
+      <ion-col *ngIf="showNoEntitiesMessage">
+        <ion-img class="ion-padding"
+                 alt="No hay clientes"
+                 src="./assets/images/no-data.svg"></ion-img>
+        <ion-text color="primary"
+                  class="ion-text-center">
+          <p>{{selectEntitiesModalContent?.messageSinRegistros}}</p>
+        </ion-text>
+      </ion-col>
+      <ion-col *ngIf="showNoCustomEntitiesMessage && allowCustom">
+        <ion-img class="ion-padding"
+                 alt="No hay clientes"
+                 src="./assets/images/no-data.svg"></ion-img>
+        <ion-text color="primary"
+                  class="ion-text-center">
+          <p>No existen entidades personalizadas. Por favor dirigite a la pagina de la organizacion para personalizar
+            tus entidades</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

@@ -1,0 +1,35 @@
+<ion-header translucent="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button id="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{recursosContent?.privadosTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-upload-files [type]="'page'"
+                    [organizationId]="organizacion?.id"
+                    [entity]="organizacion?.privados"
+                    (valueChange)='filesHasChanged($event)'
+                    [path]="'privados/'+ organizacion?.id"></app-upload-files>
+
+  <div *ngIf="organizacion.privados?.length === 0">
+    <ion-grid fixed>
+      <ion-row style="height: 100%;"
+               class="ion-justify-content-center ion-align-items-center">
+        <ion-col *ngIf="!showNoPrivadosMessage">
+          <app-skeleton></app-skeleton>
+        </ion-col>
+        <ion-col *ngIf="showNoPrivadosMessage">
+          <ion-img class="ion-padding"
+                   alt="No hay casos"
+                   src="./assets/images/no-data.svg"></ion-img>
+          <ion-text color="primary">
+            {{recursosContent?.messageSinArchivosPrivados}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

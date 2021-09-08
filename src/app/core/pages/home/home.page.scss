@@ -1,0 +1,30 @@
+#card-panorama {
+    max-height: 700px;
+    overflow: hidden;
+    overflow-y: auto;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+::ng-deep app-home ion-toolbar {
+    --min-height: 50px;
+    --padding-end: 16px;
+}
+
+::ng-deep app-home app-small-info-card ion-card {
+    height: 115px;
+}
+
+.align-vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-img {
+    width: 250px;
+    height: 200px;
+    margin: auto;
+}

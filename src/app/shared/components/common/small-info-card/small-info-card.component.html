@@ -1,0 +1,15 @@
+<ion-card (click)="onClick()"
+          tappable
+          [color]="selected ? 'primary' : ''">
+  <ion-card-content class="ion-text-center">
+    <ion-icon [color]="selected ? 'light' : 'primary'"
+              [name]="icon"></ion-icon>
+    <ion-text [color]="selected ? 'light' : 'dark'">
+      <p><strong>{{title}}</strong></p>
+    </ion-text>
+    <ion-text [color]="selected ? 'light' : 'dark'"
+              *ngIf="info !== ''">
+      <p>{{info}}</p>
+    </ion-text>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,327 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button id="back-button"
+                  (click)="onBack()">
+        <ion-icon slot="icon-only"
+                  name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{organizationContent?.title}}</ion-title>
+    <ion-buttons collapse="true"
+                 slot="end">
+      <ion-button (click)="onSubmit()"
+                  debounceTime="700"
+                  id="save-organization-button"
+                  [attr.disabled]="!organizationForm?.valid">
+        <ion-icon name="save-outline"></ion-icon>
+        <ion-text>
+          &nbsp;{{organizationContent?.buttonGuardar}}
+        </ion-text>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="organizacion; else loading"
+             [ngSwitch]="activeSegment">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-segment (ionChange)="changeSegment($event)"
+                     value="{{activeSegment}}">
+          <ion-segment-button layout="icon-start"
+                              value="{{tab.name}}"
+                              [id]="'segment' + tab.name"
+                              *ngFor="let tab of organizationContent?.tabs">
+            <ion-icon name="{{tab.icon}}"></ion-icon>
+            &nbsp;{{tab.name}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <div *ngSwitchCase="organizationContent?.tabs[0].name">
+      <app-organization-form [content]="organizationContent?.form"
+                             [isDesktop]="isDesktop"
+                             [organizationForm]="organizationForm"
+                             (shareDetailsEvent)="shareDetails()"></app-organization-form>
+
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12">
+          <ion-card>
+            <ion-card-header class="ion-no-padding-start">
+              <ion-item class="ion-no-padding">
+                <ion-buttons slot="end">
+                  <ion-button color="primary"
+                              (click)="openCustomDependenciaModal()">
+                    <ion-icon slot="icon-only"
+                              tappable
+                              name="add-circle-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button color="primary"
+                              (click)="onHelp($event)">
+                    <ion-icon slot="icon-only"
+                              tappable
+                              name="help-circle-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+                <ion-card-title>{{organizationContent.cardDependenciasPersonalizadasTitle}}</ion-card-title>
+              </ion-item>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list *ngIf="organizacion?.dependencias?.length > 0">
+                <ion-item detail
+                          tappable
+                          lines="full"
+                          class="ion-no-padding"
+                          *ngFor="let dependencia of organizacion?.dependencias">
+                  <ion-buttons slot="start">
+                    <ion-button color="danger"
+                                (click)="onCustomDependenciaDelete(dependencia)">
+                      <ion-icon slot="icon-only"
+                                tappable
+                                name="trash-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                  <ion-label (click)="openCustomDependenciaModal(dependencia)">
+                    <h2>{{ dependencia.organismo }} - {{dependencia.nombre}}</h2>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+              <div *ngIf="organizacion?.dependencias?.length === 0">
+                <p>
+                  {{ organizationContent.messageSinDependencias }}
+                </p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-end">
+        <ion-col>
+          <ion-button (click)="removeOrganization()"
+                      id="remove-plan-button"
+                      fill="clear"
+                      color="danger">
+            {{organizationContent.buttonEliminar}}
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="organizationForm?.invalid"
+                 class="ion-align-self-center ion-text-end">
+          <ion-note color="danger"
+                    class="ion-padding-end"><small>{{organizationContent?.messageCamposRequeridos}}
+              <sup>*</sup></small>
+          </ion-note>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngSwitchCase="organizationContent?.tabs[1].name">
+      <ion-row>
+        <ion-col size="12"
+                 size-lg="6"
+                 size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Usuarios disponibles: <strong>{{organizacion?.availableUsers -
+                  organizacion?.usuarios.length}}</strong></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center">
+              <google-chart [data]="usuariosPorTipoChart"></google-chart>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12"
+                 size-lg="6"
+                 size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Usuarios disponibles: <strong>{{organizacion?.availableUsers -
+                  organizacion?.usuarios.length}}</strong></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <google-chart [data]="usuariosPorEstadoChart"></google-chart>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12">
+          <ion-card>
+            <ion-card-header>
+              <ion-item class="ion-no-padding">
+                <ion-buttons slot="end">
+                  <ion-button (click)="addUser()"
+                              [attr.disabled]="validateOrganizationPlan()"
+                              color="primary"
+                              id="add-user-button">
+                    <ion-icon slot="icon-only"
+                              name="add-circle-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+                <ion-label>
+                  <ion-card-title>
+                    {{organizationContent?.cardUsuariosTitle}}
+                  </ion-card-title>
+                  <ion-text>
+                    <small>
+                      {{organizationContent?.cardUsuariosInfoMessage}}
+                    </small>
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list id="users-list"
+                        *ngIf="organizacion?.usuarios?.length > 0">
+                <ion-item lines="none"
+                          class="ion-no-padding"
+                          tappable
+                          *ngFor="let usuarioFromOrganization of organizacion?.usuarios">
+                  <ion-label>
+                    <h2>{{usuarioFromOrganization.nombre}} {{usuarioFromOrganization.apellido}}</h2>
+                    <p>{{usuarioFromOrganization.email}}</p>
+                  </ion-label>
+                  <ion-buttons slot="end">
+                    <ion-button slot="end"
+                                fill="clear"
+                                id="edit-user-button"
+                                *ngIf="usuarioFromOrganization.id !== userId"
+                                (click)="showUserPermitsAlert(usuarioFromOrganization)">
+                      <ion-icon slot="icon-only"
+                                name="key-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button slot="end"
+                                fill="clear"
+                                color="danger"
+                                id="remove-user-button"
+                                *ngIf="usuarioFromOrganization.id !== userId"
+                                (click)="removeUserFromOrganization(usuarioFromOrganization)">
+                      <ion-icon slot="icon-only"
+                                name="trash-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-item>
+              </ion-list>
+
+              <div *ngIf="organizacion?.usuarios?.length === 0"
+                   class="ion-no-padding">
+                <p>
+                  {{organizationContent?.cardUsuariosSinUsuarios}}
+                </p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngSwitchCase="organizationContent?.tabs[2].name">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12">
+          <ion-card>
+            <ion-card-header>
+              <ion-item class="ion-no-padding">
+                <ion-label>
+                  <ion-card-title>
+                    {{organizationContent?.cardPlanesTitle}}
+                  </ion-card-title>
+                  <ion-text>
+                    <small>
+                      {{organizationContent?.planesInfoMessage}}
+                    </small>
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list *ngIf="organizacion?.licencia.planes.length > 0">
+                <ion-item lines="none"
+                          class="ion-no-padding"
+                          *ngFor="let plan of organizacion?.licencia.planes">
+                  <ion-label>
+                    <h2>{{plan.nombre}} - {{plan.referenciaId}}</h2>
+                    <p>Valido desde el {{plan.fechaDesde}} hasta el {{plan.fechaHasta}}</p>
+                  </ion-label>
+                  <ion-buttons slot="end">
+                    <ion-button slot="end"
+                                fill="clear"
+                                color="primary"
+                                id="add-plan-button"
+                                [attr.disabled]="!isRenovarValid"
+                                *ngIf="organizacion?.licencia.planes[0].referenciaId === plan.referenciaId"
+                                (click)="addPlan()">
+                      {{ organizationContent.planesRenovarButton }}
+                    </ion-button>
+                  </ion-buttons>
+                </ion-item>
+              </ion-list>
+
+              <div *ngIf="organizacion?.usuarios?.length === 0"
+                   class="ion-no-padding">
+                <p>
+                  {{ organizationContent?.cardUsuariosSinUsuarios }}
+                </p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12"
+                 size-lg="6"
+                 size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-label>
+                <ion-card-title>
+                  Almacenamiento
+                </ion-card-title>
+                <ion-text>
+                  <small>
+                    Si necesitas mas espacio, puedes adquirir mas almacenamiento haciendo click <a
+                       (click)="navigateToPurchase()">aqui</a>
+                  </small>
+                </ion-text>
+              </ion-label>
+              <ion-card-subtitle>Total: <strong>{{(organizacion?.remainingStorage +
+                  organizacion?.extraStorage) / 1073741824 }} </strong> GB
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center">
+              <google-chart [data]="storageChart"></google-chart>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <!-- <ion-col size="12"
+                 size-lg="6"
+                 size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Usuarios disponibles: <strong>{{organizacion?.availableUsers -
+                  organizacion?.usuarios.length}}</strong></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <google-chart [data]="usuariosPorEstadoChart"></google-chart>
+            </ion-card-content>
+          </ion-card>
+        </ion-col> -->
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>
+
+<ng-template #loading>
+  <ion-grid>
+    <ion-row style="height: 100%;"
+             class="ion-justify-content-center ion-align-items-center">
+      <ion-col>
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

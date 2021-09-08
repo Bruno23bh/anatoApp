@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{notFoundContent?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="'/core/login'">
+        <ion-icon name="key-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="ion-padding"
+           alt="Pagina no encontrada"
+           src="./assets/images/not-found.svg"></ion-img>
+  <p class="ion-text-center">{{notFoundContent.notFoundMessage}}</p>
+
+</ion-content>

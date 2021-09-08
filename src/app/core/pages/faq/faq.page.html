@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button id="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{faqContent?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-text color="medium">
+              <ion-label>{{faqContent?.helpListHeader1}}</ion-label>
+            </ion-text>
+          </ion-list-header>
+          <div *ngFor="let helpItem of helpItems; let i=index">
+            <ion-item tappable
+                      (click)="expandItem(i)"
+                      lines="none">
+              <ion-icon [name]="helpItem.icon"
+                        slot="start"></ion-icon>
+              <ion-label>{{helpItem.title}}</ion-label>
+              <ion-button slot="end"
+                          fill="clear"
+                          size="small">
+                <ion-icon slot="icon-only"
+                          [name]="helpItem.expand ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+              </ion-button>
+            </ion-item>
+            <ion-card *ngIf="helpItem.expand">
+              <ion-card-content>
+                <ion-row>
+                  <ion-col size="12"
+                           size-lg="6"
+                           size-md="6"
+                           class="ion-align-self-center">
+                    <ion-text>
+                      <div [innerHTML]="helpItem.description"></div>
+                    </ion-text>
+                  </ion-col>
+                  <ion-col size="12"
+                           [sizeLg]="helpItem.secondImagePath ? '3' : '6'"
+                           [sizeMd]="helpItem.secondImagePath ? '3' : '6'">
+                    <ion-img alt="Instalar iuris"
+                             [src]="helpItem.firstImagePath"></ion-img>
+                  </ion-col>
+                  <ion-col size="12"
+                           [sizeLg]="helpItem.secondImagePath ? '3' : '6'"
+                           [sizeMd]="helpItem.secondImagePath ? '3' : '6'"
+                           *ngIf="helpItem.secondImagePath">
+                    <ion-img alt="Instalar iuris"
+                             [src]="helpItem.secondImagePath"></ion-img>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

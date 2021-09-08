@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm"
+      (keyup.enter)="onSubmit()">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12"
+             size-md="6"
+             size-lg="6">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating">{{content?.email.input}}</ion-label>
+            <ion-input type="text"
+                       formControlName="email"></ion-input>
+          </ion-item>
+
+          <ng-container *ngFor="let validation of content?.email.validations">
+            <ion-text color="danger"
+                      *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+              <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating">{{content?.password.input}}</ion-label>
+            <ion-input [type]="isPasswordVisible ? 'text' : 'password'"
+                       formControlName="password"></ion-input>
+            <ion-button slot="end"
+                        tabindex="-1"
+                        fill="clear"
+                        size="small"
+                        (click)="showHidePassword()">
+              <ion-icon slot="icon-only"
+                        [name]="isPasswordVisible ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <ng-container *ngFor="let validation of content?.password.validations">
+            <ion-text color="danger"
+                      *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+              <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note><br />
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</form>

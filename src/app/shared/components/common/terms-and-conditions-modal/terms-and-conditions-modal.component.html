@@ -1,0 +1,21 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">{{generalContent?.terminosYcondicionesTitle}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div class="ion-padding"
+             [innerHTML]="generalContent?.terminosYcondicionesTexto"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

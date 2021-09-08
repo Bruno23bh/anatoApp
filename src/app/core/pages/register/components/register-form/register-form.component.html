@@ -1,0 +1,225 @@
+<form [formGroup]="registerForm">
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{content?.cardDatosPersonalesTitle}}</ion-card-title>
+          <ion-note>
+            <small>
+              {{content?.cardDatosPersonalesSubTitle}}
+            </small>
+          </ion-note>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.nombre.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="nombre"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.nombre.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('nombre').hasError(validation.type) && (registerForm.get('nombre').dirty || registerForm.get('nombre').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.apellido.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="apellido"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.apellido.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('apellido').hasError(validation.type) && (registerForm.get('apellido').dirty || registerForm.get('apellido').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.cuit.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="cuit"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.cuit.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('cuit').hasError(validation.type) && (registerForm.get('cuit').dirty || registerForm.get('cuit').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.email.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="email"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.email.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ng-container formGroupName="matching_passwords">
+              <ion-col size="12"
+                       size-md="4"
+                       size-lg="4">
+                <ion-item class="ion-no-padding">
+                  <ion-label position="floating">{{matchingPasswordsFormContent?.password.input}} <sup>*</sup>
+                  </ion-label>
+                  <ion-input [type]="isPasswordVisible ? 'text' : 'password'"
+                             formControlName="password"></ion-input>
+                  <ion-button slot="end"
+                              tabindex="-1"
+                              fill="clear"
+                              size="small"
+                              (click)="showHidePassword()">
+                    <ion-icon slot="icon-only"
+                              [name]="isPasswordVisible ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ng-container *ngFor="let validation of matchingPasswordsFormContent?.password.validations">
+                  <ion-text color="danger"
+                            *ngIf="registerForm.get('matching_passwords').get('password').hasError(validation.type) && (registerForm.get('matching_passwords').get('password').dirty || registerForm.get('matching_passwords').get('password').touched)">
+                    <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                  </ion-text>
+                </ng-container>
+              </ion-col>
+
+              <ion-col size="12"
+                       size-md="4"
+                       size-lg="4">
+                <ion-item class="ion-no-padding">
+                  <ion-label position="floating">{{matchingPasswordsFormContent?.confirmPassword.input}} <sup>*</sup>
+                  </ion-label>
+                  <ion-input [type]="isRepeatPasswordVisible ? 'text' : 'password'"
+                             formControlName="confirmPassword"></ion-input>
+                  <ion-button slot="end"
+                              fill="clear"
+                              size="small"
+                              tabindex="-1"
+                              (click)="showHideRepeatPassword()">
+                    <ion-icon slot="icon-only"
+                              [name]="isRepeatPasswordVisible ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ng-container *ngFor="let validation of matchingPasswordsFormContent?.confirmPassword.validations">
+                  <ion-text color="danger"
+                            *ngIf="registerForm.get('matching_passwords').get('confirmPassword').hasError(validation.type) && (registerForm.get('matching_passwords').get('confirmPassword').dirty || registerForm.get('matching_passwords').get('confirmPassword').touched)">
+                    <ion-note color="danger"> <small>&#9888; {{ validation.message }} </small></ion-note>
+                  </ion-text>
+                </ng-container>
+
+                <ng-container *ngFor="let validation of matchingPasswordsFormContent?.validations">
+                  <ion-text color="danger"
+                            *ngIf="registerForm.get('matching_passwords').hasError(validation.type) && (registerForm.get('matching_passwords').get('confirmPassword').dirty || registerForm.get('matching_passwords').get('confirmPassword').touched)">
+                    <ion-note color="danger"> <small>&#9888;
+                        {{ validation.message }}</small></ion-note>
+                  </ion-text>
+                </ng-container>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{content?.cardDatosOrganizationTitle}}</ion-card-title>
+          <ion-note>
+            <!-- FIXME: Add this to the remote config  -->
+            <small>
+              Tu organizacion es el lugar donde cargas a tus clientes, pagos y casos. Al registrarte obtenes una cuenta
+              con <strong>1GB</strong> de almacenamiento y <strong>1</strong> usuario de forma <strong>gratuita</strong>
+              por el lapso de 1 mes.
+            </small>
+          </ion-note>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.organizacion.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="organizacion"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.organizacion.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('organizacion').hasError(validation.type) && (registerForm.get('organizacion').dirty || registerForm.get('organizacion').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.domicilio.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="domicilio"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.domicilio.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('domicilio').hasError(validation.type) && (registerForm.get('domicilio').dirty || registerForm.get('domicilio').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+
+            <ion-col size="12"
+                     size-md="4"
+                     size-lg="4">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.telefonoContacto.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="telefonoContacto"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.telefonoContacto.validations">
+                <ion-text color="danger"
+                          *ngIf="registerForm.get('telefonoContacto').hasError(validation.type) && (registerForm.get('telefonoContacto').dirty || registerForm.get('telefonoContacto').touched)">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</form>

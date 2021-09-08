@@ -1,0 +1,59 @@
+    .ios {
+
+      ::ng-deep .sc-ion-searchbar-ios-h {
+        min-width: 140px;
+      }
+
+      #file-input-container {
+        input {
+          position: absolute;
+          right: -32px;
+          width: 24px;
+          height: 24px;
+          z-index: 999;
+          bottom: 2px;
+        }
+
+        ion-icon {
+          height: 24px;
+          width: 24px;
+          position: absolute;
+          right: -32px;
+          bottom: 2px;
+        }
+      }
+    }
+
+    .md {
+      ::ng-deep .searchbar-input {
+        min-width: 165px;
+      }
+
+      #file-input-container {
+        input {
+          position: absolute;
+          right: -32px;
+          width: 24px;
+          height: 24px;
+          z-index: 999;
+          bottom: 12px;
+        }
+
+        ion-icon {
+          height: 24px;
+          width: 24px;
+          position: absolute;
+          right: -32px;
+          bottom: 12px;
+        }
+      }
+    }
+
+    ion-buttons {
+      margin-right: 32px;
+    }
+
+
+    .searchbar-card {
+      --box-shadow: 'none';
+    }

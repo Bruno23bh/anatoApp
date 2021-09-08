@@ -1,0 +1,12 @@
+<ion-item lines="none">
+  <ion-icon slot="start"
+            name="calendar-outline"></ion-icon>
+  <ion-label>Agendar</ion-label>
+  <ion-select interface="popover"
+              [selectedText]="' '"
+              (ionChange)="calendarOptionSelected($event)">
+    <ion-select-option value="google"> Google </ion-select-option>
+    <ion-select-option value="apple"> Apple</ion-select-option>
+    <ion-select-option value="outlook"> Outlook</ion-select-option>
+  </ion-select>
+</ion-item>

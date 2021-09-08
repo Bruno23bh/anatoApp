@@ -1,0 +1,44 @@
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="home"
+                  [selected]="activeTab === 'home'"
+                  (click)="itemClicked('home')"
+                  [attr.disabled]="!usuario?.hasPaid">
+    <ion-icon name="home-outline"></ion-icon>
+    <ion-label>{{generalContent?.tabHome}}</ion-label>
+    <ion-badge color="danger"
+               *ngIf="activeNotificacionesFromHome > 0;else userNotifications">{{activeNotificacionesFromHome}}
+    </ion-badge>
+    <ng-template #userNotifications>
+      <ion-badge color="danger"
+                 *ngIf="activeNotifications.length > 0">{{activeNotifications.length}}</ion-badge>
+    </ng-template>
+  </ion-tab-button>
+
+  <ion-tab-button tab="casos"
+                  id="tab-button-casos"
+                  [selected]="activeTab === 'casos'"
+                  (click)="itemClicked('casos')"
+                  [attr.disabled]="!usuario?.hasPaid">
+    <ion-icon name="briefcase-outline"></ion-icon>
+    <ion-label>{{generalContent?.tabCasos}}</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button tab="pagos"
+                  id="tab-button-pagos"
+                  *ngIf="usuario?.isAdmin"
+                  [selected]="activeTab === 'pagos'"
+                  (click)="itemClicked('pagos')"
+                  [attr.disabled]="!usuario?.hasPaid">
+    <ion-icon name="cash-outline"></ion-icon>
+    <ion-label>{{generalContent?.tabPagos}}</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button tab="clientes"
+                  id="tab-button-clientes"
+                  [selected]="activeTab === 'clientes'"
+                  (click)="itemClicked('clientes')"
+                  [attr.disabled]="!usuario?.hasPaid">
+    <ion-icon name="people-outline"></ion-icon>
+    <ion-label>{{generalContent?.tabClientes}}</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>

@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary"
+                  [routerLink]="'/core/home/' + usuario?.id">
+        OMITIR
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides #welcomeSlides
+              pager="true">
+    <ion-slide>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-img class="ion-padding"
+                     alt="Slide-1"
+                     src="./assets/images/welcome-slide-1.svg"></ion-img>
+          </ion-col>
+          <ion-col size="12">
+            <h1>Gracias por elegir iuris como herramienta de trabajo para tu estudio.</h1>
+          </ion-col>
+          <ion-col size="12">
+            <p>En este paso a paso te contaremos las principales funcionalidades de la app. Siempre puedes consultar
+              esta
+              seccion desde la configuracion
+              <ion-icon slot="end"
+                        name="settings-outline"></ion-icon>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-img class="ion-padding"
+                     alt="Slide-1"
+                     src="./assets/images/welcome-slide-2.svg"></ion-img>
+          </ion-col>
+          <ion-col size="12">
+            <h1>Secciones</h1>
+          </ion-col>
+          <ion-col size="12">
+            <p>La app se encuentra dividida en 4 secciones principales: clientes, pagos, casos y home.
+              Todo comienza por el cliente, no? Comienza por agregar un cliente para poder luego, añadirle un pago o un
+              caso.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-img class="ion-padding"
+                     alt="Slide-1"
+                     src="./assets/images/welcome-slide-3.svg"></ion-img>
+          </ion-col>
+          <ion-col size="12">
+            <h1>Pagos y casos.</h1>
+          </ion-col>
+          <ion-col size="12">
+            <p>Una vez que tengas clientes, puedes administrar los pagos que ellos te realizan y llevar adelante sus
+              casos. Elige una opcion y comienza a gestionar tu estudio!
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-img class="ion-padding"
+                     alt="Slide-1"
+                     src="./assets/images/welcome-slide-4.svg"></ion-img>
+          </ion-col>
+          <ion-col size="12">
+            <h1>Documentacion y resultados</h1>
+          </ion-col>
+          <ion-col size="12">
+            <p>Siempre puedes añadir formualarios, normativas u otrso recursos desde la carpeta
+              <ion-icon slot="icon-only"
+                        name="folder-outline"></ion-icon> o
+              visualizar estadisticas y numeros de tu negocio en pagina principal <ion-icon slot="icon-only"
+                        name="home-outline"></ion-icon>
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12"
+                   size-md="2"
+                   size-lg="2">
+            <ion-button [routerLink]="'/core/home/' + usuario?.id"
+                        expand="block"
+                        shape="round">
+              Comenzar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <ion-fab vertical="bottom"
+           horizontal="end"
+           slot="fixed">
+    <ion-fab-button (click)="onNextSlide()">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

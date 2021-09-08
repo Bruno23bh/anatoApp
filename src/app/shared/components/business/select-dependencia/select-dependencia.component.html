@@ -1,0 +1,26 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{contentSelectDependencia?.title}} {{ tipo }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item class="ion-no-padding"
+              [lines]="'none'">
+      <ion-label *ngIf="dependencia">{{ dependencia?.nombre }}, {{ dependencia?.organismo }}</ion-label>
+      <ion-label *ngIf="!dependencia">{{contentSelectDependencia?.selectLabel}}<sup *ngIf="required">&nbsp;*</sup>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary"
+                    id="select-dependencia"
+                    (click)="searchDependencias()">
+          <ion-icon slot="icon-only"
+                    name="refresh-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="openCustomDependenciaModal()"
+                    color="primary">
+          <ion-icon name="add-circle-outline"
+                    slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

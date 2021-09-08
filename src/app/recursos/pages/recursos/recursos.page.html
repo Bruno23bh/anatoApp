@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button id="back-button"
+                  (click)="onBack()">
+        <ion-icon slot="icon-only"
+                  name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{recursos?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12"
+               size-md="6"
+               size-lg="4"
+               class="ion-align-self-center">
+        <ion-card (click)="goToNormativas()"
+                  tappable>
+          <ion-img class="ion-padding"
+                   alt="Normativas"
+                   src="./assets/images/resources-normativas.svg"></ion-img>
+          <ion-card-header class="ion-margin-top">
+            <ion-card-title>{{recursos?.card1NormativasTitle}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{recursos?.card1NormativasDescription}} </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12"
+               size-md="6"
+               size-lg="4">
+        <ion-card (click)="goToFormularios()"
+                  tappable>
+          <ion-img alt="Formularios"
+                   class="ion-padding"
+                   src="./assets/images/resources-formularios.svg"></ion-img>
+          <ion-card-header class="ion-margin-top">
+            <ion-card-title>{{recursos?.card2FormulariosTitle}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{recursos?.card2FormulariosDescription}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12"
+               size-md="6"
+               size-lg="4"
+               *ngIf="usuario?.isAdmin">
+        <ion-card (click)="goToPrivados()"
+                  tappable>
+          <ion-img alt="Privados"
+                   class="ion-padding"
+                   src="./assets/images/resources-privados.svg"></ion-img>
+          <ion-card-header class="ion-margin-top">
+            <ion-card-title>{{recursos?.card3PrivadosTitle}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{recursos?.card3PrivadosDescription}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

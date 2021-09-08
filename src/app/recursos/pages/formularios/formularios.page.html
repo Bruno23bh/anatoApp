@@ -1,0 +1,36 @@
+<ion-header translucent="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button id="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{recursosContent?.formulariosTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-upload-files [type]="'page'"
+                    [entity]="organizacion?.formularios"
+                    [organizationId]="organizacion?.id"
+                    (valueChange)='filesHasChanged($event)'
+                    [path]="'formularios/'+ organizacion.id"></app-upload-files>
+  <div *ngIf="organizacion?.formularios?.length === 0">
+
+    <ion-grid fixed>
+      <ion-row style="height: 100%;"
+               class="ion-justify-content-center ion-align-items-center">
+        <ion-col *ngIf="!showNoFormulariosMessage">
+          <app-skeleton></app-skeleton>
+        </ion-col>
+        <ion-col *ngIf="showNoFormulariosMessage">
+          <ion-img class="ion-padding"
+                   alt="No hay casos"
+                   src="./assets/images/no-data.svg"></ion-img>
+          <ion-text color="primary"
+                    class="ion-text-center">
+            <p>{{recursosContent?.messageSinArchivos}}</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+
+    <app-login-form [loginForm]="loginForm"
+                    [content]="contentForm"
+                    (submitForm)="onSubmit()"></app-login-form>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12"
+               size-md="6"
+               size-lg="6">
+        <ion-note (click)="onResetPassword()"
+                  tappable
+                  color="primary">¿Olvidó la contraseña?</ion-note>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col size="12"
+               size-md="6"
+               size-lg="6">
+        <ion-button expand="block"
+                    color="primary"
+                    id="login-button"
+                    (click)="onSubmit()"
+                    debounceTime="700"
+                    [attr.disabled]="!loginForm?.valid">Ingresar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12"
+               size-md="6"
+               size-lg="6">
+        <ion-button [routerLink]="'/core/register'"
+                    fill="outline"
+                    color="primary"
+                    expand="block">
+          Registrarse
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

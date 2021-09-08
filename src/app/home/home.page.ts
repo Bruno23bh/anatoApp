@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faHeadSideVirus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +27,7 @@ export class HomePage implements OnInit {
     url?: string;
   }[] = [];
 
-  showHelpCard = true
+  showHelpCard = true;
   // Metodos
   constructor() { }
 
@@ -82,9 +81,7 @@ export class HomePage implements OnInit {
   }
 
   onCloseHelpCardClick() {
-
-    this.showHelpCard = false
-
+    this.showHelpCard = false;
   }
 
 

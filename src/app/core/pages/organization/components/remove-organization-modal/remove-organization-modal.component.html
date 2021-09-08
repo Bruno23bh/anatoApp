@@ -1,0 +1,72 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      {{content?.alertEliminarOrganizacionTitle}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(false)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              &#9888; {{content?.alertEliminarOrganizacionCardTitle}}
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{content?.alertEliminarOrganizacionCardSubTitle}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="alertEliminarOrganizacionForm">
+              <ion-item class="ion-no-padding">
+                <ion-label position="floating">{{content?.organization.input}} <sup>*</sup></ion-label>
+                <ion-input type="text"
+                           formControlName="organization"></ion-input>
+              </ion-item>
+
+              <ng-container *ngFor="let validation of content?.organization.validations">
+                <ion-text color="danger"
+                          *ngIf="alertEliminarOrganizacionForm.get('organization').hasError(validation.type) &&
+                      (alertEliminarOrganizacionForm.get('organization').dirty ||
+                      alertEliminarOrganizacionForm.get('organization').touched) ">
+                  <ion-note color="danger"> <small>&#9888; {{ validation.message }}</small></ion-note>
+                </ion-text>
+              </ng-container>
+              <ion-text color="danger"
+                        *ngIf="alertEliminarOrganizacionForm.get('organization').value !== organizationName">
+                <ion-note color="danger"> <small> - {{ content?.alertEliminarOrganizacionNoCoincideNombre }}</small>
+                </ion-note>
+              </ion-text>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-start ion-padding-end">
+      <ion-col size="6">
+        <ion-button expand="block"
+                    color="medium"
+                    fill="outline"
+                    (click)="dismiss(false)">
+          {{content?.alertEliminarOrganizacionCancelarButton}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button [attr.disabled]="alertEliminarOrganizacionForm.get('organization').value !== organizationName"
+                    expand="block"
+                    color="danger"
+                    (click)="dismiss(true)">
+          {{content?.alertEliminarOrganizacionEliminarButton}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

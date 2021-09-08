@@ -1,0 +1,28 @@
+.large {
+    min-height: 400px;
+}
+
+.small {
+    .title-small {
+        font-size: x-small;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .header-small {
+        padding: 8px;
+    }
+
+    .months-small {
+        margin-top: 8px;
+    }
+}
+
+.selected {
+    border: 2px solid var(--ion-color-primary);
+}
+
+.selected-plan-icon {
+    font-size: 72px;
+    color: var(--ion-color-primary);
+}
